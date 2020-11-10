@@ -39,10 +39,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
-      KC_TAB,           KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                                                KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_PIPE,
-      KC_CAPSLOCK,      KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                                                KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-      KC_LSFT, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,  KC_LSFT, LT(_ADJUST, KC_ESC),                         KC_LSFT, KC_LSFT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_LSFT,
-        KC_LGUI, MT(MOD_LALT, KC_ENT), MT(MOD_LGUI, KC_SPC),  LT(_LOWER, KC_SPC), LT(_RAISE, KC_ESC),               MT(MOD_LCTL, KC_TAB), LT(_RAISE, KC_ENT), LT(_LOWER, KC_SPC),  MT(MOD_LALT, KC_BSPC), KC_RALT
+      LT(_ADJUST, KC_TAB),           KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_PIPE,
+      KC_CAPSLOCK,    MT(MOD_LSFT, KC_A),   KC_S,   KC_D,   KC_F,   KC_G,                                      KC_H,    KC_J,    KC_K,    KC_L,    MT(MOD_LSFT, KC_SCLN), KC_QUOT,
+      KC_LSFT, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,    KC_LSFT, KC_LEAD,                         TG(_RAISE), KC_LSFT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_LSFT,
+        KC_LGUI, MT(MOD_LALT, KC_ENT), MT(MOD_LGUI, KC_SPC),  LT(_LOWER, KC_SPC), KC_CAPSLOCK,               MT(MOD_LCTL, KC_ENT), LT(_LOWER, KC_SPC), KC_SPC,  MT(MOD_LALT, KC_BSPC), KC_RALT
     ),
 
 /*
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_RAISE] = LAYOUT(
       TG(4), KC_1, 	  KC_2,    KC_3,    KC_4,    KC_5,                                      KC_7, KC_8, KC_9,    KC_9,    KC_0,    _______,
       _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU,                                     KC_4, KC_5, KC_6, _______, _______, _______,
-      _______, _______, _______, _______, KC_MUTE, KC_VOLD, _______, _______, _______, _______, KC_1, KC_2, KC_3, _______, _______, _______,
+      _______, _______, _______, _______, KC_MUTE, KC_VOLD, _______, _______, TG(_RAISE), _______, KC_1, KC_2, KC_3, _______, _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, KC_0, _______, _______
     ),
 /*
@@ -144,7 +144,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 
 static void render_kyria_logo(void) {
     static const char PROGMEM kyria_logo[] = {
-        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,128,128,192,224,240,112,120, 56, 60, 28, 30, 14, 14, 14,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7, 14, 14, 14, 30, 28, 60, 56,120,112,240,224,192,128,128,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,128,128,192,224,240,112,120, 56, 60, 28, 30, 14, 14, 14,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7, 14, 14, 14, 30, 28, 60, 56,120,112,240,224,192,128,128,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  128,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
         0,  0,  0,  0,  0,  0,  0,192,224,240,124, 62, 31, 15,  7,  3,  1,128,192,224,240,120, 56, 60, 28, 30, 14, 14,  7,  7,135,231,127, 31,255,255, 31,127,231,135,  7,  7, 14, 14, 30, 28, 60, 56,120,240,224,192,128,  1,  3,  7, 15, 31, 62,124,240,224,192,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
         0,  0,  0,  0,240,252,255, 31,  7,  1,  0,  0,192,240,252,254,255,247,243,177,176, 48, 48, 48, 48, 48, 48, 48,120,254,135,  1,  0,  0,255,255,  0,  0,  1,135,254,120, 48, 48, 48, 48, 48, 48, 48,176,177,243,247,255,254,252,240,192,  0,  0,  1,  7, 31,255,252,240,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
         0,  0,  0,255,255,255,  0,  0,  0,  0,  0,254,255,255,  1,  1,  7, 30,120,225,129,131,131,134,134,140,140,152,152,177,183,254,248,224,255,255,224,248,254,183,177,152,152,140,140,134,134,131,131,129,225,120, 30,  7,  1,  1,255,255,254,  0,  0,  0,  0,  0,255,255,255,  0,  0,  0,  0,255,255,  0,  0,192,192, 48, 48,  0,  0,240,240,  0,  0,  0,  0,  0,  0,240,240,  0,  0,240,240,192,192, 48, 48, 48, 48,192,192,  0,  0, 48, 48,243,243,  0,  0,  0,  0,  0,  0, 48, 48, 48, 48, 48, 48,192,192,  0,  0,  0,  0,  0,
@@ -228,3 +228,42 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     }
 }
 #endif
+
+enum combos {
+  FD_TAB,
+  JK_ESC,
+  NM_LEADER
+};
+
+const uint16_t PROGMEM fd_combo[] = {KC_F, KC_D, COMBO_END};
+const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM leader_combo[] = {KC_N, KC_M, COMBO_END};
+
+
+combo_t key_combos[COMBO_COUNT] = {
+  [JK_ESC] = COMBO(jk_combo, KC_ESC),
+  [FD_TAB] = COMBO(fd_combo, KC_TAB),
+  [NM_LEADER] = COMBO(leader_combo, KC_LEAD)
+};
+
+
+LEADER_EXTERNS();
+
+void matrix_scan_user(void) {
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+    // Replace the sequences below with your own sequences.
+    SEQ_ONE_KEY(KC_T) {
+      // When I press KC_LEAD and then T, this sends CTRL + SHIFT + T
+      SEND_STRING(SS_LGUI(SS_LSFT("t")));
+    }
+    // Note: This is not an array, you don't need to put any commas
+    // or semicolons between sequences.
+    SEQ_TWO_KEYS(KC_N, KC_T) {
+      // When I press KC_LEAD and then N followed by T, this sends CTRL + T
+      SEND_STRING(SS_LCTRL("t"));
+    }
+  }
+}
+
